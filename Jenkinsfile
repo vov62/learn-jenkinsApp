@@ -5,7 +5,7 @@ pipeline {
 
     environment{
         NETLIFY_SIDE_UP = 'e51c0bd5-64cc-4338-a73c-4ff1b9f75af0'
-        NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+        NETLIFY_AUTH_TOKEN = credentials('netlify_token')
     }
 
     stages {
