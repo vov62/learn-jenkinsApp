@@ -45,7 +45,7 @@ pipeline {
                     npm install netlify-cli
                     node_modules/.bin/netlify --version 
                     echo "Deloying to production, Site ID: $NETLIFY_SITE_UP"
-                    node_modules/.bin/netlify link --id $NETLIFY_SITE_ID
+                    node_modules/.bin/netlify link --id $NETLIFY_SITE_UP
                     node_modules/.bin/netlify status
                     node_modules/.bin/netlify deploy --dir=build --prod
                 '''
@@ -53,4 +53,5 @@ pipeline {
         }
     }
 }
+//   docker run -d --name jenkins-from-ubuntu -p 8081:8080 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker  -v jenkins_home:/var/jenkins_home   jenkins/jenkins:lts
  
