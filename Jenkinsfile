@@ -3,6 +3,11 @@
 pipeline {
     agent any
 
+    environment{
+        NETLIFY_SIDE_UP = 'e51c0bd5-64cc-4338-a73c-4ff1b9f75af0'
+        NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+    }
+
     stages {
         stage('Build') {
             agent{
@@ -39,9 +44,13 @@ pipeline {
                 sh '''
                     npm install netlify-cli
                     node_modules/.bin/netlify --version 
+                    echo "Deloying to production, Site ID: $NETLIFY_SIDE_UP"
+                    node_modules/.bin/netlify status
+                    node_modules/.bin/netlify deploy --dir=dist --prod
                 '''
             }
         }
     }
 }
+//   docker run -d --name jenkins-from-ubuntu -p 8081:8080 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker  -v jenkins_home:/var/jenkins_home   jenkins/jenkins:lts
  
